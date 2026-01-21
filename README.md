@@ -1,33 +1,77 @@
-# Collaborative Canvas (Real-Time)
+# Real-Time Collaborative Drawing Canvas
 
-Multi-user drawing canvas with real-time streaming, presence, cursor indicators, and **global undo/redo**.
+Multi-user drawing application where multiple people can draw simultaneously on the same canvas with real-time synchronization.
 
-## Setup
+## Features
+
+- **Drawing Tools**: Brush, eraser, different colors, stroke width adjustment
+- **Real-time Sync**: See other users' drawings as they draw (not after they finish)
+- **User Indicators**: Show where other users are currently drawing (cursor positions)
+- **Conflict Resolution**: Handle when multiple users draw in overlapping areas
+- **Undo/Redo**: Works globally across all users
+- **User Management**: Show who's online, assign colors to users
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js (v20 or higher)
+- npm
+
+### Installation & Running
 
 ```bash
 npm install
 npm start
 ```
 
-Open `http://localhost:3000`.
+The server will start on `http://localhost:3000`. Open this URL in your browser.
 
-## Test with multiple users
+**Note**: The setup should work with `npm install && npm start` as required.
 
-- Open **two tabs** (or two different browsers).
-- Use the same room link: `http://localhost:3000/?room=myroom`
-- Draw at the same time; you should see each other’s strokes live + cursor indicators.
+## How to Test with Multiple Users
+
+### Local Testing
+
+1. **Start the server** (if not already running):
+   ```bash
+   npm start
+   ```
+
+2. **Open multiple browser windows/tabs**:
+   - Open `http://localhost:3000` in one tab
+   - Open `http://localhost:3000/?room=test123` in another tab (or use the same URL)
+   - You can also use different browsers (Chrome, Firefox, Edge)
+
+3. **Test real-time collaboration**:
+   - Draw simultaneously in both windows
+   - You should see strokes appear in real-time in the other window
+   - Cursor positions should update as you move your mouse
+   - Try undo/redo - it should affect the latest stroke globally
+
+4. **Test room isolation**:
+   - Open `http://localhost:3000/?room=room1` in one tab
+   - Open `http://localhost:3000/?room=room2` in another tab
+   - Drawings should be isolated per room
+
+### Remote Testing (After Deployment)
+
+1. Share the deployed URL with others
+2. Use the same room parameter: `https://your-app.com/?room=shared-room`
+3. Multiple users can join and draw simultaneously
 
 ## Scripts
 
-- `npm start`: run server
-- `npm run dev`: run with nodemon
+- `npm start`: Run the production server
+- `npm run dev`: Run with nodemon (auto-restart on file changes)
 
-## Deploy
+## Deployment
 
-### Render (recommended)
+### Render (Recommended)
 
-1. Go to Render → **New** → **Blueprint**
-2. Select this repo and deploy using `render.yaml`
+1. Go to [Render](https://render.com) → **New** → **Blueprint**
+2. Select this GitHub repository
+3. Render will auto-detect `render.yaml` and deploy
 
 ### Vercel
 
@@ -37,7 +81,6 @@ Open `http://localhost:3000`.
 1. Install Vercel CLI: `npm i -g vercel`
 2. Run `vercel` in the project root
 3. Follow prompts to deploy
-4. Set environment variable `SOCKET_SERVER_URL` if using separate backend
 
 **Option 2: Split deployment** (recommended for production)
 - **Frontend**: Deploy `client/` folder to Vercel
@@ -46,20 +89,64 @@ Open `http://localhost:3000`.
 
 ### Heroku
 
-This repo includes a `Procfile`, so you can deploy with standard Heroku Node steps.
+This repo includes a `Procfile`, so you can deploy with standard Heroku Node steps:
 
-## Known limitations / bugs
+```bash
+heroku create your-app-name
+git push heroku main
+```
 
-- Rooms and drawings are **in-memory** (server restart clears state).
-- Undo/redo is global and deterministic, but it’s **stroke-level only** (not per-point).
-- No auth; users are identified by socket id.
+## Known Limitations / Bugs
 
-## Time spent
+### Current Limitations
+
+1. **In-memory storage**: 
+   - Rooms and drawings are stored in memory only
+   - Server restart clears all state
+   - No persistence between restarts
+
+2. **Undo/Redo granularity**:
+   - Undo/redo operates at the **stroke level** (entire strokes), not per-point
+   - Cannot undo individual points within a stroke
+
+3. **No authentication**:
+   - Users are identified only by socket ID
+   - No user accounts or login system
+   - Anyone with the room URL can join
+
+4. **No drawing persistence**:
+   - Drawings are not saved to disk or database
+   - Cannot load previous sessions
+
+5. **Browser compatibility**:
+   - Requires modern browsers with WebSocket support
+   - May not work on very old browsers
+
+### Known Bugs
+
+- None currently reported, but edge cases may exist with:
+  - Very rapid drawing (high-frequency events)
+  - Network latency spikes
+  - Browser tab switching (may pause WebSocket)
+
+## Time Spent on the Project
 
 Fill in before submission:
-- Design + architecture: __ hours
-- Server: __ hours
-- Client canvas + UI: __ hours
-- Testing + polish: __ hours
 
+- **Design + architecture**: __ hours
+- **Server implementation**: __ hours
+- **Client canvas + UI**: __ hours
+- **Testing + polish**: __ hours
+- **Documentation**: __ hours
+- **Total**: __ hours
 
+## Technical Stack
+
+- **Frontend**: Vanilla JavaScript (ES6 modules), HTML5 Canvas API
+- **Backend**: Node.js + Express
+- **Real-time**: Socket.io (WebSocket library)
+- **No drawing libraries** - all canvas operations implemented from scratch
+
+## License
+
+ISC

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collaborative Canvas</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="dot"></div>
+        <div>
+          <div class="title">Collaborative Canvas</div>
+          <div class="subtitle" id="roomLabel">Room: —</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <label class="ctl">
+          Tool
+          <select id="toolSelect">
+            <option value="brush">Brush</option>
+            <option value="eraser">Eraser</option>
+          </select>
+        </label>
+
+        <label class="ctl">
+          Color
+          <input id="colorInput" type="color" value="#111827" />
+        </label>
+
+        <label class="ctl">
+          Width
+          <input id="widthInput" type="range" min="1" max="40" value="6" />
+          <span class="pill" id="widthLabel">6</span>
+        </label>
+
+        <button id="undoBtn" class="btn">Undo</button>
+        <button id="redoBtn" class="btn">Redo</button>
+
+        <button id="newRoomBtn" class="btn btn-secondary" title="Create a new room">
+          New room
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="canvasShell">
+        <div class="canvasWrap" id="canvasWrap">
+          <canvas id="baseCanvas"></canvas>
+          <canvas id="liveCanvas"></canvas>
+          <div id="cursors" class="cursors"></div>
+        </div>
+        <div class="statusbar">
+          <div class="status" id="statusText">Connecting…</div>
+          <div class="meta">
+            <span class="pill" id="latencyPill">— ms</span>
+            <span class="pill" id="versionPill">v0</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="card">
+          <div class="cardTitle">You</div>
+          <div class="youRow">
+            <div class="avatar" id="meAvatar">?</div>
+            <div class="youMeta">
+              <div class="youName" id="meName">—</div>
+              <div class="youId" id="meId">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">Online</div>
+          <ul id="usersList" class="users"></ul>
+        </div>
+
+        <div class="card hint">
+          <div class="cardTitle">Tips</div>
+          <div class="hintText">
+            - Open two browser windows to test multi-user sync.<br />
+            - Undo/redo is global (affects the latest visible stroke).<br />
+            - Add <code>?room=abc123</code> to share a room.
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
+
+

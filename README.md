@@ -11,6 +11,36 @@ Multi-user drawing application where multiple people can draw simultaneously on 
 - **Undo/Redo**: Works globally across all users
 - **User Management**: Show who's online, assign colors to users
 
+## 📁 Project Structure
+
+### **Required Files**
+```
+collaborative-canvas/
+├── client/
+│   ├── index.html           # Main HTML file
+│   ├── style.css            # Stylesheet
+│   ├── config.js            # Socket.io server URL configuration
+│   └── js/
+│       ├── canvas.js        # Canvas drawing logic
+│       ├── websocket.js    # WebSocket client (Socket.io)
+│       └── main.js         # App initialization
+├── server/
+│   ├── server.js           # Express + WebSocket server
+│   ├── rooms.js            # Room management
+│   └── drawing-state.js    # Canvas state management
+├── package.json            # Dependencies and scripts
+├── README.md               # This file
+└── ARCHITECTURE.md         # Technical architecture documentation
+```
+
+### **Additional Files** (for deployment)
+```
+├── .gitignore              # Git ignore rules
+├── Procfile               # Heroku deployment config
+├── render.yaml            # Render deployment config
+└── vercel.json            # Vercel deployment config
+```
+
 ## Setup Instructions
 
 ### Prerequisites

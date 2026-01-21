@@ -1,6 +1,6 @@
 # Architecture Documentation
 
-## Data Flow Diagram: How Drawing Events Flow from User to Canvas
+## Data Flow Diagram: 
 
 ### High-Level Flow
 
@@ -79,7 +79,7 @@ User Input → Client Processing → WebSocket → Server → Broadcast → Othe
                                         └─────────────┘
 ```
 
-## WebSocket Protocol: What Messages You Send/Receive
+## WebSocket Protocol: 
 
 ### Protocol Overview
 
@@ -348,7 +348,7 @@ Full state snapshot (for recovery).
 
 ---
 
-## Undo/Redo Strategy: How You Handle Global Operations
+## Undo/Redo Strategy: 
 
 ### Core Design Philosophy
 
@@ -409,7 +409,7 @@ Full state snapshot (for recovery).
 
 ---
 
-## Performance Decisions: Why You Chose Specific Optimizations
+## Performance Decisions: 
 
 ### 1. Dual Canvas Layers (`baseCanvas` + `liveCanvas`)
 
@@ -507,7 +507,7 @@ Full state snapshot (for recovery).
 
 ---
 
-## Conflict Resolution: How You Handle Simultaneous Drawing
+## Conflict Resolution: 
 
 ### The Problem
 

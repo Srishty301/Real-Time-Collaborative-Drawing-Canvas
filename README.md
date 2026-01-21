@@ -95,36 +95,6 @@ The server will start on `http://localhost:3000`. Open this URL in your browser.
 - `npm start`: Run the production server
 - `npm run dev`: Run with nodemon (auto-restart on file changes)
 
-## Deployment
-
-### Render (Recommended)
-
-1. Go to [Render](https://render.com) → **New** → **Blueprint**
-2. Select this GitHub repository
-3. Render will auto-detect `render.yaml` and deploy
-
-### Vercel
-
-**Important**: Vercel's serverless functions have limitations with WebSockets. For best results:
-
-**Option 1: Full deployment on Vercel** (may have WebSocket limitations)
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run `vercel` in the project root
-3. Follow prompts to deploy
-
-**Option 2: Split deployment** (recommended for production)
-- **Frontend**: Deploy `client/` folder to Vercel
-- **Backend**: Deploy to Render/Railway (supports WebSockets)
-- Set `SOCKET_SERVER_URL` in Vercel environment variables to your backend URL
-
-### Heroku
-
-This repo includes a `Procfile`, so you can deploy with standard Heroku Node steps:
-
-```bash
-heroku create your-app-name
-git push heroku main
-```
 
 ## Known Limitations / Bugs
 

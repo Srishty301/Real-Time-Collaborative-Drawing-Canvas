@@ -29,6 +29,21 @@ Open `http://localhost:3000`.
 1. Go to Render → **New** → **Blueprint**
 2. Select this repo and deploy using `render.yaml`
 
+### Vercel
+
+**Important**: Vercel's serverless functions have limitations with WebSockets. For best results:
+
+**Option 1: Full deployment on Vercel** (may have WebSocket limitations)
+1. Install Vercel CLI: `npm i -g vercel`
+2. Run `vercel` in the project root
+3. Follow prompts to deploy
+4. Set environment variable `SOCKET_SERVER_URL` if using separate backend
+
+**Option 2: Split deployment** (recommended for production)
+- **Frontend**: Deploy `client/` folder to Vercel
+- **Backend**: Deploy to Render/Railway (supports WebSockets)
+- Set `SOCKET_SERVER_URL` in Vercel environment variables to your backend URL
+
 ### Heroku
 
 This repo includes a `Procfile`, so you can deploy with standard Heroku Node steps.

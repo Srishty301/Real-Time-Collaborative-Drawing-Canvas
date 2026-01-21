@@ -22,6 +22,17 @@ Open `http://localhost:3000`.
 - `npm start`: run server
 - `npm run dev`: run with nodemon
 
+## Deploy
+
+### Render (recommended)
+
+1. Go to Render → **New** → **Blueprint**
+2. Select this repo and deploy using `render.yaml`
+
+### Heroku
+
+This repo includes a `Procfile`, so you can deploy with standard Heroku Node steps.
+
 ## Known limitations / bugs
 
 - Rooms and drawings are **in-memory** (server restart clears state).

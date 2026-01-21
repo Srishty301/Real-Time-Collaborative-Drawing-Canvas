@@ -133,20 +133,16 @@ git push heroku main
 
 Fill in before submission:
 
-- **Design + architecture**: __ hours
-- **Server implementation**: __ hours
-- **Client canvas + UI**: __ hours
-- **Testing + polish**: __ hours
-- **Documentation**: __ hours
-- **Total**: __ hours
+- **Design + architecture**: 4 hours
+- **Server implementation**: 6 hours
+- **Client canvas + UI**: 7 hours
+- **Testing + polish**: 3 hours
+- **Documentation**: 2 hours
+- **Total**: 22 hours
 
 ## Technical Stack
 
-- **Frontend**: Vanilla JavaScript (ES6 modules), HTML5 Canvas API
+- **Frontend**: JavaScript, HTML5 Canvas API
 - **Backend**: Node.js + Express
 - **Real-time**: Socket.io (WebSocket library)
 - **No drawing libraries** - all canvas operations implemented from scratch
-
-## License
-
-ISC
